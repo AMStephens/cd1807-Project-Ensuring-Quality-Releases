@@ -1,7 +1,7 @@
 resource "azurerm_network_interface" "" {
-  name                = ""
-  location            = ""
-  resource_group_name = ""
+  name                = "AlicesNetworkInterface"
+  location            = "West Europe"
+  resource_group_name = "Alices_Project_Group"
 
   ip_configuration {
     name                          = "internal"
@@ -12,15 +12,15 @@ resource "azurerm_network_interface" "" {
 }
 
 resource "azurerm_linux_virtual_machine" "" {
-  name                = ""
-  location            = ""
-  resource_group_name = ""
-  size                = "Standard_DS2_v2"
-  admin_username      = ""
+  name                = "AlicesVM"
+  location            = "West Europe"
+  resource_group_name = "Alices_Project_Group"
+  size                = "Standard_B1s"
+  admin_username      = "christian"
   network_interface_ids = []
   admin_ssh_key {
     username   = ""
-    public_key = "file("~/.ssh/id_rsa.pub")"
+    public_key = "ssh-rsa jfQYIGwX9odHh6BlfBA+Uu4wZZHDlZaNV/tZv/zhyes christian@cc-75698b48-5fcb98799f-mnprr"
   }
   os_disk {
     caching           = "ReadWrite"
