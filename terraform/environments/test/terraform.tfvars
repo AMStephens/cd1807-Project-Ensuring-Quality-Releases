@@ -7,6 +7,7 @@ tenant_id = "0da09405-9090-469c-a6ee-114a1fe538e5"
 # Resource Group/Location
 location = "West Europe"
 resource_group_name = "Alices_Project_Group"
+resource_group = "Alices_Project_Group"
 application_type = "myApplication"
 
 # Network
