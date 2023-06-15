@@ -207,6 +207,7 @@ stages:
               resourceGroupName: 'Alices_Project_Group'
               appLocation: 'West Europe'
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip    # ToDo: Use the published zip artifact.
+              timeoutInMinutes: 12
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
           - task: CmdLine@2
