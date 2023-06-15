@@ -175,7 +175,7 @@ stages:
      #--------------------------------------------#  
     - script: |
       unzip -l $(System.DefaultWorkingDirectory)/_temp/fakerestapi.zip
-      displayName: 'View Contents of fakerestapi.zip'
+    displayName: 'View Contents of fakerestapi.zip'
 
 #--------------------------------------------#  
 # DEPLOYMENT STAGE
