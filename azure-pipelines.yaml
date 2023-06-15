@@ -18,7 +18,7 @@ variables:
   projectRoot: $(System.DefaultWorkingDirectory)
   # Environment name
   environmentName: 'Aices_Environment'
-  system.debug: true
+  #system.debug: true
   
 stages:
 #--------------------------------------------#  
@@ -193,7 +193,7 @@ stages:
   - deployment: FakeRestAPI
     pool: myAgentPool
       #vmImage: 'ubuntu-latest'      
-    environment: 'Alices_Environment'
+    #environment: 'Alices_Environment'
     strategy:
       runOnce:
         deploy:
