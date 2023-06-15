@@ -171,6 +171,11 @@ stages:
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-perftests.zip
       displayName: 'Upload Package'
       artifact: drop-perftests
+      
+     #--------------------------------------------#  
+    - script: |
+      unzip -l $(System.DefaultWorkingDirectory)/_temp/fakerestapi.zip
+      displayName: 'View Contents of fakerestapi.zip'
 
 #--------------------------------------------#  
 # DEPLOYMENT STAGE
