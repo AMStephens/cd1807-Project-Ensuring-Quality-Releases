@@ -175,11 +175,11 @@ stages:
      #--------------------------------------------#  
     - task: DownloadPipelineArtifact@2
       inputs:
-        artifact: 'fakerestapi'
-        path: '$(System.DefaultWorkingDirectory)/_temp'
+        artifact: 'drop-fakerestapi'
+        path: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
 
     - script: |
-        unzip -l $(System.DefaultWorkingDirectory)/_temp/fakerestapi.zip
+        unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
       displayName: 'View Contents of fakerestapi.zip'
 
 #--------------------------------------------#  
