@@ -173,9 +173,14 @@ stages:
       artifact: drop-perftests
       
      #--------------------------------------------#  
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        artifact: 'fakerestapi'
+        path: '$(System.DefaultWorkingDirectory)/_temp'
+
     - script: |
-      unzip -l $(System.DefaultWorkingDirectory)/_temp/fakerestapi.zip
-    displayName: 'View Contents of fakerestapi.zip'
+        unzip -l $(System.DefaultWorkingDirectory)/_temp/fakerestapi.zip
+      displayName: 'View Contents of fakerestapi.zip'
 
 #--------------------------------------------#  
 # DEPLOYMENT STAGE
