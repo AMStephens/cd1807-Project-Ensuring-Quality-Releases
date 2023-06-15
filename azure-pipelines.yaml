@@ -193,7 +193,7 @@ stages:
   - deployment: FakeRestAPI
     pool: myAgentPool
       #vmImage: 'ubuntu-latest'      
-    #environment: 'Alices_Environment'
+    environment: 'Alices_Environment'
     strategy:
       runOnce:
         deploy:
