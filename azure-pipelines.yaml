@@ -226,7 +226,7 @@ stages:
   #--------------------------------------------# 
   # DEPLOYMENT STAGE
   #--------------------------------------------#    
-  - stage: Deploy
+  - stage: Selenium | Functional UI Tests
     jobs:
     #--------------------------------------------#  
     # Selenium | Functional UI Tests
