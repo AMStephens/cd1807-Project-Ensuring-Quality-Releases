@@ -203,7 +203,8 @@ stages:
             displayName: 'Deploy Azure Web App'
             inputs:
               azureSubscription: 'FixedConnection'
-              appName: 'WebAppAlice12345'
+              #appName: 'WebAppAlice12345'
+              WebappName: 'WebAppAlice12345'
               appType: webApp
               resourceGroupName: 'Alices_Project_Group'
               appLocation: 'West Europe'
