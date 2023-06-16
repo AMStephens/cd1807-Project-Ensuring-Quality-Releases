@@ -238,7 +238,6 @@ stages:
           steps:
           - download: current
             artifact: 'drop-uitests'     # ToDo: Change/provide a name
-            path: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
           - task: Bash@3
             inputs:
               targetType: 'inline'
