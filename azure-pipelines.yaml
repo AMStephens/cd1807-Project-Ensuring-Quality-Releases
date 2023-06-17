@@ -181,6 +181,16 @@ stages:
     - script: |
         unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
       displayName: 'View Contents of fakerestapi.zip'
+      
+       #--------------------------------------------#  
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        artifact: 'drop-uitests'
+        path: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+
+    - script: |
+        unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-uitests.zip
+      displayName: 'View Contents of uitests.zip'
 
 #--------------------------------------------#  
 # DEPLOYMENT STAGE
@@ -242,7 +252,7 @@ stages:
         deploy:
           steps:
           - download: current
-            artifact: 'drop-uitests'     # ToDo: Change/provide a name
+            artifact: 'drop-uitests-error'     # ToDo: Change/provide a name
           - task: Bash@3
             inputs:
               targetType: 'inline'
