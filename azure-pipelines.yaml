@@ -251,8 +251,8 @@ stages:
       runOnce:
         deploy:
           steps:
-          #- download: current
-          #  artifact: 'drop-uitests'     # ToDo: Change/provide a name
+          - download: current
+            artifact: 'drop-uitests'     # ToDo: Change/provide a name
           - task: Bash@3
             inputs:
               targetType: 'inline'
