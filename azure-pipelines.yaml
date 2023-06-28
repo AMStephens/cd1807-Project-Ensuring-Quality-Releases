@@ -17,7 +17,7 @@ variables:
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
   # Environment name
-  environmentName: 'Aices_Environment'
+  environmentName: 'Aices_New_Environment'
   #system.debug: true
   
 stages:
@@ -203,7 +203,7 @@ stages:
   - deployment: FakeRestAPI
     pool: myAgentPool
       #vmImage: 'ubuntu-latest'      
-    environment: 'Alices_Environment'
+    environment: 'Alices_New_Environment'
     strategy:
       runOnce:
         deploy:
@@ -244,7 +244,7 @@ stages:
   - deployment: VMDeploy
     displayName: Selenium Tests
     environment:
-      name: 'Alices_Environment'       # ToDo: Change/provide a name
+      name: 'Alices_New_Environment'       # ToDo: Change/provide a name
       resourceType: VirtualMachine
       #tags: selenium
     strategy:
