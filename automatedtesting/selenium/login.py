@@ -12,7 +12,7 @@ def login (user, password):
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox") 
-    driver = webdriver.Chrome(options=options, executable_path='/usr/bin/chromedriver')
+    driver = webdriver.Chrome(options=options)
     # driver = webdriver.Chrome()
     print ('Browser started successfully. Navigating to the demo page to login.')
     driver.get('https://www.saucedemo.com/')
