@@ -1,0 +1,25 @@
+{
+	"id": "38b1717c-45ae-477f-8dae-8e889ba381d5",
+	"name": "Starter APIs Environment",
+	"values": [
+		{
+			"key": "name",
+			"value": "Alice",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "salary",
+			"value": "500000",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "age",
+			"value": "32",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment"
+}
