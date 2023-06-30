@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "968b3a18-cc72-48a2-9b6b-e8619b4aaca8",
-		"name": "Starter APIs",
+		"_postman_id": "fa0388ae-2f53-4ea8-a0c9-eef940bd3640",
+		"name": "Starter APIs Data Validation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,7 +11,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "38b1717c-45ae-477f-8dae-8e889ba381d5",
 						"exec": [
 							"pm.test(\"Successful response\", function () {",
 							"    pm.expect(pm.response.text()).to.include(\"success\");",
@@ -28,7 +27,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw":"{\r\n    \"name\": \"Alice\",\r\n    \"salary\": 500000,\r\n    \"age\": 32\r\n}",
+					"raw":"{\n    \"name\": \"Alice\",\n    \"salary\": 500000,\n    \"age\": 32\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -58,12 +57,28 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "af3cb111-e3ac-4174-b8ca-7f4127a0285d",
 						"exec": [
 							"pm.test(\"Successful response\", function () {",
 							"    pm.expect(pm.response.text()).to.include(\"success\");",
 							"});",
-							""
+							"",
+							"pm.test(\"Response has correct schema\", function () {",
+							"    var schema = {",
+							"        \"type\": \"array\",",
+							"        \"items\": [{",
+							"            \"type\":\"object\",",
+							"            \"properties\":{",
+							"                \"id\":{\"type\":\"number\"},",
+							"                \"employee_name\":{\"type\":\"string\"},",
+							"                \"employee_salary\":{\"type\":\"number\"},",
+							"                \"employee_age\":{\"type\":\"number\"},",
+							"                \"profile_image\":{\"type\":\"string\"}",
+							"            }",
+							"        }]",
+							"    }",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(tv4.validate(jsonData.data,schema)).to.be.true;",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -89,6 +104,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
