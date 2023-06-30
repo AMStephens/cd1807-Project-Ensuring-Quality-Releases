@@ -229,8 +229,19 @@ stages:
                 wget "https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz"
                 tar -xf apache-jmeter-5.5.tgz
                 unzip -o $(Build.BuildId)-perftests.zip
-                ./apache-jmeter-5.5/bin/jmeter -n -t Starter.jmx -j jmeter.log -f
-                cat jmeter.log                                                                           # ToDo: Write your commands
+                #./apache-jmeter-5.5/bin/jmeter -n -t Starter.jmx -j jmeter.log -f
+                #cat jmeter.log                                                                           # ToDo: Write your commands
+                # Run Stress Test
+                ./apache-jmeter-5.5/bin/jmeter -n -t StressTest.jmx -JcsvFile=people-100.csv -l stress_results.jtl -j stress.log -e -o stress_report
+      
+                # Run Endurance Test
+                ./apache-jmeter-5.5/bin/jmeter -n -t EnduranceTest.jmx -JcsvFile=people-100.csv -l endurance_results.jtl -j endurance.log -e -o endurance_report
+      
+                # Display logs and results
+                cat stress.log
+                cat endurance.log
+                cat stress_results.jtl
+                cat endurance_results.jtl                
               workingDirectory: $(Pipeline.Workspace)/drop-perftests            # ToDo: Use the artifact name from the task above
               
   #--------------------------------------------# 
