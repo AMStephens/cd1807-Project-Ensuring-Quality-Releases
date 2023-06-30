@@ -29,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 609,\n    \"idBook\": 609,\n    \"firstName\": \"First Name 609\",\n    \"lastName\": \"Last Name 609\"\n}",
+					"raw": "{\n    \"id\": \"{{id}}\",\n    \"idBook\": \"{{idBook}}\",\n    \"firstName\": \"{{FirstName}}\",\n    \"lastName\": \"{{LastName}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -111,7 +111,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://fakerestapi.azurewebsites.net/api/v1/Authors/609",
+					"raw": "http://fakerestapi.azurewebsites.net/api/v1/Authors/{{id}}",
 					"protocol": "http",
 					"host": [
 						"fakerestapi",
@@ -122,7 +122,7 @@
 						"api",
 						"v1",
 						"Authors",
-						"609"
+						"{{id}}"
 					]
 				},
 				"description": "Delete an employee record"
