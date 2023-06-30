@@ -43,6 +43,7 @@
 						"fakerestapi",
 						"azurewebsites",
 						"net"
+					]
 					"path": [
 						"api",
 						"v1",
@@ -81,6 +82,7 @@
 						"fakerestapi",
 						"azurewebsites",
 						"net"
+					]
 					"path": [
 						"api",
 						"v1",
@@ -115,6 +117,7 @@
 						"fakerestapi",
 						"azurewebsites",
 						"net"
+					]
 					"path": [
 						"api",
 						"v1",
