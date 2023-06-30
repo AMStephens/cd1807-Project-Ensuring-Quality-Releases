@@ -28,7 +28,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"{{name}}\",\n    \"salary\": \"{{salary}}\",\n    \"age\": \"{{age}}\"\n}",
+					"raw":"{\n    \"name\": \"Alice\",\n    \"salary\": 500000,\n    \"age\": 32\n}",
 					"options": {
 						"raw": {
 							"language": "json"
