@@ -229,8 +229,16 @@ stages:
                 wget "https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz"
                 tar -xf apache-jmeter-5.5.tgz
                 unzip -o $(Build.BuildId)-perftests.zip
+
+                # Remove existing log and JTL files
+                rm -f stress.log
+                rm -f endurance.log
+                rm -f stress_results.jtl
+                rm -f endurance_results.jtl
+      
                 #./apache-jmeter-5.5/bin/jmeter -n -t Starter.jmx -j jmeter.log -f
                 #cat jmeter.log                                                                           # ToDo: Write your commands
+                
                 # Run Stress Test
                 ./apache-jmeter-5.5/bin/jmeter -n -t StressTest.jmx -JcsvFile=people-100.csv -l stress_results.jtl -j stress.log -e -o stress_report
       
