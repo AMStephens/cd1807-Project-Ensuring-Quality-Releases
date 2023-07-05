@@ -235,6 +235,10 @@ stages:
                 rm -f endurance.log
                 rm -f stress_results.jtl
                 rm -f endurance_results.jtl
+
+                # Delete existing report folders
+                rm -rf stress_report
+                rm -rf endurance_report
       
                 #./apache-jmeter-5.5/bin/jmeter -n -t Starter.jmx -j jmeter.log -f
                 #cat jmeter.log                                                                           # ToDo: Write your commands
