@@ -153,10 +153,10 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter/FakeRestAPI2'
         includeRootFolder: false
         archiveType: 'zip'
-        # archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
-    #- publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
-    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+        #archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+    #- publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
       displayName: 'Upload Package'
       artifact: drop-fakerestapi
 
@@ -182,8 +182,8 @@ stages:
         path: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
 
     - script: |
-        #unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
-        unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
+        unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+        #unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
       displayName: 'View Contents of fakerestapi2.zip'
       
        #--------------------------------------------#  
@@ -222,7 +222,7 @@ stages:
               appType: webApp
               resourceGroupName: 'Alices_Project_Group'
               appLocation: 'West Europe'
-              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-FakeRestAPI2.zip    # ToDo: Use the published zip artifact.
+              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip    # ToDo: Use the published zip artifact.
               timeoutInMinutes: 12
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
