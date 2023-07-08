@@ -209,7 +209,7 @@ stages:
       #vmImage: 'ubuntu-latest'      
     environment: 'Alices_New_Environment'
     strategy:
-      runOnce:
+      runTwice:
         deploy:
           steps:
           - task: AzureWebApp@1
@@ -224,7 +224,7 @@ stages:
               appLocation: 'West Europe'
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip    # ToDo: Use the published zip artifact.
               deploymentMethod: zipDeploy
-              #timeoutInMinutes: 12
+              timeoutInMinutes: 12
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
           - task: CmdLine@2
