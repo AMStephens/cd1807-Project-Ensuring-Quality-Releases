@@ -149,13 +149,16 @@ stages:
     - task: ArchiveFiles@2
       displayName: 'Archive FakeRestAPI'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter/fakerestapi'
+        # rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter/fakerestapi'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter/FakeRestAPI2'
         includeRootFolder: false
         archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
-    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+        # archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
+    #- publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
       displayName: 'Upload Package'
-      artifact: drop-fakerestapi
+      artifact: drop-fakerestapi2
 
     #--------------------------------------------#  
     # JMeter (Performance) Test Suite - Archive
@@ -175,12 +178,13 @@ stages:
      #--------------------------------------------#  
     - task: DownloadPipelineArtifact@2
       inputs:
-        artifact: 'drop-fakerestapi'
+        artifact: 'drop-fakerestapi2'
         path: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
 
     - script: |
-        unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
-      displayName: 'View Contents of fakerestapi.zip'
+        #unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+        unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
+      displayName: 'View Contents of fakerestapi2.zip'
       
        #--------------------------------------------#  
     - task: DownloadPipelineArtifact@2
@@ -218,7 +222,7 @@ stages:
               appType: webApp
               resourceGroupName: 'Alices_Project_Group'
               appLocation: 'West Europe'
-              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip    # ToDo: Use the published zip artifact.
+              package: $(Pipeline.Workspace)/drop-fakerestapi2/$(Build.BuildId)-FakeRestAPI2.zip    # ToDo: Use the published zip artifact.
               timeoutInMinutes: 12
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
