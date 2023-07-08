@@ -205,7 +205,7 @@ stages:
   # Deploy FakeRestAPI Web App
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
-    pool: myAgentPool
+    #pool: myAgentPool
       #vmImage: 'ubuntu-latest'      
     environment: 'Alices_New_Environment'
     strategy:
@@ -223,6 +223,7 @@ stages:
               resourceGroupName: 'Alices_Project_Group'
               appLocation: 'West Europe'
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip    # ToDo: Use the published zip artifact.
+              deploymentMethod: zipDeploy
               #timeoutInMinutes: 12
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
