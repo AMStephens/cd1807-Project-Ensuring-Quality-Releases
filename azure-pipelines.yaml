@@ -209,12 +209,25 @@ stages:
       #vmImage: 'ubuntu-latest'      
     environment: 'Alices_New_Environment'
     strategy:
-      runTwice:
+      runOnce:
         deploy:
           steps:
           - task: AzureWebApp@1
           #- task: AzureRMWebAppDeployment@4
             displayName: 'Deploy Azure Web App'
+            inputs:
+              azureSubscription: 'FixedConnection'
+              appName: 'WebAppAlice12345'
+              #WebappName: 'WebAppAlice12345'
+              appType: webApp
+              resourceGroupName: 'Alices_Project_Group'
+              appLocation: 'West Europe'
+              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip    # ToDo: Use the published zip artifact.
+              deploymentMethod: zipDeploy
+              timeoutInMinutes: 12
+          - task: AzureWebApp@1
+          #- task: AzureRMWebAppDeployment@4
+            displayName: 'Deploy Azure Web App2'
             inputs:
               azureSubscription: 'FixedConnection'
               appName: 'WebAppAlice12345'
