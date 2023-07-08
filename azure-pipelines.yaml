@@ -158,7 +158,7 @@ stages:
     #- publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-FakeRestAPI2.zip
       displayName: 'Upload Package'
-      artifact: drop-fakerestapi2
+      artifact: drop-fakerestapi
 
     #--------------------------------------------#  
     # JMeter (Performance) Test Suite - Archive
@@ -178,7 +178,7 @@ stages:
      #--------------------------------------------#  
     - task: DownloadPipelineArtifact@2
       inputs:
-        artifact: 'drop-fakerestapi2'
+        artifact: 'drop-fakerestapi'
         path: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
 
     - script: |
@@ -222,7 +222,7 @@ stages:
               appType: webApp
               resourceGroupName: 'Alices_Project_Group'
               appLocation: 'West Europe'
-              package: $(Pipeline.Workspace)/drop-fakerestapi2/$(Build.BuildId)-FakeRestAPI2.zip    # ToDo: Use the published zip artifact.
+              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-FakeRestAPI2.zip    # ToDo: Use the published zip artifact.
               timeoutInMinutes: 12
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
