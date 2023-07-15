@@ -17,7 +17,7 @@ resource "azurerm_linux_virtual_machine" "main" {
   resource_group_name = "Alices_Project_Group"
   size                = "Standard_B1s"
   admin_username      = "christian"
-  admin_password      = "christianspassword"
+  admin_password      = "Christians-Password123"
   network_interface_ids = [azurerm_network_interface.main.id]
   #admin_ssh_key {
   #  username   = "christian"
