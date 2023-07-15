@@ -1,4 +1,4 @@
-resource "azurerm_network_interface" "" {
+resource "azurerm_network_interface" "main" {
   name                = "AlicesNetworkInterface"
   location            = "West Europe"
   resource_group_name = "Alices_Project_Group"
@@ -11,7 +11,7 @@ resource "azurerm_network_interface" "" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "" {
+resource "azurerm_linux_virtual_machine" "main" {
   name                = "AlicesVM"
   location            = "West Europe"
   resource_group_name = "Alices_Project_Group"
