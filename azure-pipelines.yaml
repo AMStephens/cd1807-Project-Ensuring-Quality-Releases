@@ -313,3 +313,9 @@ stages:
                   #python3 add_remove_from_cart.py >> selenium.log
                   python3 login.py >> selenium.log
                   echo "Completed Selenium Tests. Check selenium.log for results."
+          - task: Bash@3
+              inputs:
+              targetType: 'inline'
+              script: |
+                echo "Displaying selenium.log"
+                cat /home/christian/app/selenium.log
