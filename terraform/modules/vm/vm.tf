@@ -17,11 +17,12 @@ resource "azurerm_linux_virtual_machine" "main" {
   resource_group_name = "Alices_Project_Group"
   size                = "Standard_B1s"
   admin_username      = "christian"
+  admin_password      = "christianspassword"
   network_interface_ids = [azurerm_network_interface.main.id]
-  admin_ssh_key {
-    username   = "christian"
-    public_key = "ssh-rsa jfQYIGwX9odHh6BlfBA+Uu4wZZHDlZaNV/tZv/zhyes christian@cc-75698b48-5fcb98799f-mnprr"
-  }
+  #admin_ssh_key {
+  #  username   = "christian"
+  #  public_key = "ssh-rsa jfQYIGwX9odHh6BlfBA+Uu4wZZHDlZaNV/tZv/zhyes christian@cc-75698b48-5fcb98799f-mnprr"
+  #}
   os_disk {
     caching           = "ReadWrite"
     storage_account_type = "Standard_LRS"
