@@ -314,7 +314,7 @@ stages:
                   python3 login.py >> selenium.log
                   echo "Completed Selenium Tests. Check selenium.log for results."
           - task: Bash@3
-              inputs:
+            inputs:
               targetType: 'inline'
               script: |
                 echo "Displaying selenium.log"
