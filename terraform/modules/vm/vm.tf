@@ -17,7 +17,7 @@ resource "azurerm_linux_virtual_machine" "main" {
   resource_group_name = "Alices_Project_Group"
   size                = "Standard_B1s"
   admin_username      = "christian"
-  network_interface_ids = [azurerm_network_interface.test.id]
+  network_interface_ids = [azurerm_network_interface.main.id]
   admin_ssh_key {
     username   = "christian"
     public_key = "ssh-rsa jfQYIGwX9odHh6BlfBA+Uu4wZZHDlZaNV/tZv/zhyes christian@cc-75698b48-5fcb98799f-mnprr"
