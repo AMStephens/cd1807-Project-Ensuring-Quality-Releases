@@ -29,28 +29,28 @@ driver.find_element(By.ID,'password').send_keys(password)
 driver.find_element(By.ID,'login-button').click()
 print(f"{user} logged in succesfully!")
 
-# find the items and add to the cart - verify we can find all 6
+# find the items and add to the basket - verify we can find all 6
 items = driver.find_elements(By.CLASS_NAME, "inventory_item")
 assert len(items) == 6 
 
-for i in items:
-    name = i.find_element(By.CLASS_NAME, "inventory_item_name").text
-    i.find_element(By.CLASS_NAME, "btn").click()
-    print(f"{name} added to the cart.")
+for item in items:
+    name = item.find_element(By.CLASS_NAME, "inventory_item_name").text
+    item.find_element(By.CLASS_NAME, "btn").click()
+    print(f"{name} added to the basket.")
 
-# find items in the cart - verify we have all 6
-cart = driver.find_element(By.CLASS_NAME, "shopping_cart_container")
-cart.click()
-cart_content = driver.find_elements(By.CLASS_NAME, "cart_item")
-assert len(cart_content) == 6
-print("Added all items to the cart")
+# find items in the basket - verify we have all 6
+basket = driver.find_element(By.CLASS_NAME, "shopping_cart_container")
+basket.click()
+basket_items = driver.find_elements(By.CLASS_NAME, "cart_item")
+assert len(basket_items) == 6
+print("Added all items to the basket")
 
-# remove the items from the cart
-for i in cart_content:
-    name = i.find_element(By.CLASS_NAME, "inventory_item_name").text
-    i.find_element(By.CLASS_NAME, "btn").click()
-    print(f"{name} removed from the cart.")
-print("Removed all items from the cart")
+# remove the items from the basket
+for item in basket_items:
+    name = item.find_element(By.CLASS_NAME, "inventory_item_name").text
+    item.find_element(By.CLASS_NAME, "btn").click()
+    print(f"{name} removed from the basket.")
+print("Removed all items from the basket")
 
 time.sleep(5)
 
