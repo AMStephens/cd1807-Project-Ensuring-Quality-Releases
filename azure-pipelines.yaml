@@ -195,7 +195,16 @@ stages:
     - script: |
         unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-uitests.zip
       displayName: 'View Contents of uitests.zip'
-
+      #--------------------------------------------# 
+    - task: AzureMonitorAlert@2
+      inputs:
+        azureSubscription: 'Azure subscription 1'
+        resourceGroup: 'YourWebAppResourceGroup'
+        actionGroup: '/subscriptions/3bc92201-8ca7-4359-bd9e-391de1730ab1/resourceGroups/Alices_Resource_Group/providers/microsoft.insights/actionGroups/Alices_Alerts'
+        condition: 'succeeded()'
+        alertRuleName: 'WebAppDeploymentAlert'
+        monitorService: 'AppInsights'   
+        
 #--------------------------------------------#  
 # DEPLOYMENT STAGE
 #--------------------------------------------#    
