@@ -233,8 +233,8 @@ stages:
               "WindowSize": 15,
               "TimeAggregation": "Total",
               "Operator": "GreaterThan",
-              "Threshold": "0",
-              "ThrottlingInMin": "15",
+              "Threshold": 0,
+              "ThrottlingInMin": 15,
               "AlertDetails": "WebAppDeploymentAlert",
               "ActionGroupId": "/subscriptions/3bc92201-8ca7-4359-bd9e-391de1730ab1/resourceGroups/Alices_Resource_Group/providers/microsoft.insights/actionGroups/Alices_Alerts"
             }
