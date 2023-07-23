@@ -225,7 +225,7 @@ stages:
           [
             {
               "Location": "West Europe",
-              "Severity": "2",
+              "Severity": 2,
               "MonitorService": "AppInsights",
               "ConditionType": "Metric",
               "MetricName": "FailedRequests",
