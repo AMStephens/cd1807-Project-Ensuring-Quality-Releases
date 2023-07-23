@@ -196,14 +196,25 @@ stages:
         unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-uitests.zip
       displayName: 'View Contents of uitests.zip'
       #--------------------------------------------# 
-    - task: AzureMonitorAlert@2
+    - task: AzurePowerShell@5
+      displayName: 'Create Azure Monitor Alert'
       inputs:
         azureSubscription: 'Azure subscription 1'
-        resourceGroup: 'YourWebAppResourceGroup'
-        actionGroup: '/subscriptions/3bc92201-8ca7-4359-bd9e-391de1730ab1/resourceGroups/Alices_Resource_Group/providers/microsoft.insights/actionGroups/Alices_Alerts'
-        condition: 'succeeded()'
-        alertRuleName: 'WebAppDeploymentAlert'
-        monitorService: 'AppInsights'   
+        scriptType: 'InlineScript'
+        inline: |
+          $resourceGroupName = 'Alices_Project_Group'
+          $webAppName = 'WebAppAlice12345'
+          $actionGroupId = '/subscriptions/3bc92201-8ca7-4359-bd9e-391de1730ab1/resourceGroups/Alices_Resource_Group/providers/microsoft.insights/actionGroups/Alices_Alerts'
+          $condition = 'succeeded()'
+          $alertRuleName = 'WebAppDeploymentAlert'
+
+          # Create the Azure Monitor Alert
+          az monitor metrics alert create `
+            --resource-group $resourceGroupName `
+            --resource $webAppName `
+            --name $alertRuleName `
+            --condition $condition `
+            --action $actionGroupId   
         
 #--------------------------------------------#  
 # DEPLOYMENT STAGE
