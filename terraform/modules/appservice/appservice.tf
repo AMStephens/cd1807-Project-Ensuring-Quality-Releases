@@ -36,7 +36,7 @@ resource "azurerm_monitor_metric_alert" "main" {
 
   criteria {
     metric_namespace = "Microsoft.Web/sites"
-    metric_name      = "FailedRequests"
+    metric_name      = "Http Server Errors"
     aggregation      = "Total"
     operator         = "GreaterThan"
     threshold        = 0
