@@ -199,7 +199,7 @@ stages:
     - task: AzurePowerShell@5
       displayName: 'Create Azure Monitor Alert'
       inputs:
-        azureSubscription: '3bc92201-8ca7-4359-bd9e-391de1730ab1'
+        azureSubscription: 'FixedConnection'
         scriptType: 'InlineScript'
         inline: |
           $resourceGroupName = 'Alices_Project_Group'
