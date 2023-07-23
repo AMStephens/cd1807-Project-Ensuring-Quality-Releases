@@ -196,25 +196,49 @@ stages:
         unzip -l $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-uitests.zip
       displayName: 'View Contents of uitests.zip'
       #--------------------------------------------# 
-    - task: AzurePowerShell@5
-      displayName: 'Create Azure Monitor Alert'
+    #- task: AzurePowerShell@5
+      #displayName: 'Create Azure Monitor Alert'
+      #inputs:
+        #azureSubscription: 'FixedConnection'
+       # scriptType: 'InlineScript'
+     #   inline: |
+       #   $resourceGroupName = 'Alices_Project_Group'
+       #   $webAppName = 'WebAppAlice12345'
+       #   $actionGroupId = '/subscriptions/3bc92201-8ca7-4359-bd9e-391de1730ab1/resourceGroups/Alices_Resource_Group/providers/microsoft.insights/actionGroups/Alices_Alerts'
+        #  $condition = 'succeeded()'
+      #    $alertRuleName = 'WebAppDeploymentAlert'
+
+        #  # Create the Azure Monitor Alert
+        #  az monitor metrics alert create `
+         #   --resource-group $resourceGroupName `
+          #  --resource $webAppName `
+         #   --name $alertRuleName `
+          #  --condition $condition `
+         #   --action $actionGroupId
+    - task: AzureMonitorAlerts@0
       inputs:
         azureSubscription: 'FixedConnection'
-        scriptType: 'InlineScript'
-        inline: |
-          $resourceGroupName = 'Alices_Project_Group'
-          $webAppName = 'WebAppAlice12345'
-          $actionGroupId = '/subscriptions/3bc92201-8ca7-4359-bd9e-391de1730ab1/resourceGroups/Alices_Resource_Group/providers/microsoft.insights/actionGroups/Alices_Alerts'
-          $condition = 'succeeded()'
-          $alertRuleName = 'WebAppDeploymentAlert'
-
-          # Create the Azure Monitor Alert
-          az monitor metrics alert create `
-            --resource-group $resourceGroupName `
-            --resource $webAppName `
-            --name $alertRuleName `
-            --condition $condition `
-            --action $actionGroupId   
+        ResourceGroupName: 'Alices_Project_Group'
+        ResourceType: 'Microsoft.Web/sites'
+        ResourceName: 'WebAppAlice12345'
+        AlertRules: |
+          [
+            {
+              "Location": "West Europe",
+              "Severity": "2",
+              "MonitorService": "AppInsights",
+              "ConditionType": "Metric",
+              "MetricName": "FailedRequests",
+              "MetricValue": "1",
+              "WindowSize": "15",
+              "TimeAggregation": "Total",
+              "Operator": "GreaterThan",
+              "Threshold": "0",
+              "ThrottlingInMin": "15",
+              "AlertDetails": "WebAppDeploymentAlert",
+              "ActionGroupId": "/subscriptions/3bc92201-8ca7-4359-bd9e-391de1730ab1/resourceGroups/Alices_Resource_Group/providers/microsoft.insights/actionGroups/Alices_Alerts"
+            }
+          ]
         
 #--------------------------------------------#  
 # DEPLOYMENT STAGE
