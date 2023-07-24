@@ -330,7 +330,10 @@ stages:
                   export PATH=$PATH:/home/christian/app
                   echo "Starting Selenium Tests"
                   #python3 add_remove_from_cart.py >> selenium.log
-                  python3 login.py >> selenium.log
+                  #python3 login.py >> selenium.log
+                  python3 login.py | while IFS= read -r line; do
+                    echo "$(date +"%Y-%m-%d %H:%M:%S"), $line" >> /home/christian/app/selenium.log
+                  done
                   echo "Completed Selenium Tests. Check selenium.log for results."
           - task: Bash@3
             inputs:
