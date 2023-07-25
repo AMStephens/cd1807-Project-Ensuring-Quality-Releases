@@ -335,8 +335,11 @@ stages:
                   echo "Completed Selenium Tests. Check selenium.log for results."
                   timestamp=$(date +"%Y%m%d%H%M%S")
                   mv /home/christian/app/selenium.log /home/christian/app/selenium${timestamp}.log
-                  # Convert the log file to UTF-8 encoding
-                  iconv -f ASCII -t UTF-8 "/home/christian/app/selenium${timestamp}.log" > "/home/christian/app/selenium${timestamp}.utf8.log"
+                  # Convert the log file to UTF-8 encoding using Python
+                  python3 -c "with open('/home/christian/app/selenium${timestamp}.log', 'r', encoding='ascii') as f:
+                                 content = f.read()
+                             with open('/home/christian/app/selenium${timestamp}.utf8.log', 'w', encoding='utf-8') as f:
+                                 f.write(content)"
           - task: Bash@3
             inputs:
               targetType: 'inline'
