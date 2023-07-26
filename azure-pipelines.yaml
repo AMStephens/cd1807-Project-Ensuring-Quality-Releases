@@ -18,7 +18,7 @@ variables:
   projectRoot: $(System.DefaultWorkingDirectory)
   # Environment name
   environmentName: 'Aices_New_Environment'
-  #system.debug: true
+  system.debug: true
   
 stages:
 #--------------------------------------------#  
@@ -76,8 +76,6 @@ stages:
     # Run Terraform Apply
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
       displayName: Terraform apply
-      env:
-        SYSTEM_DEBUG: 'true'
       inputs:
         provider: 'azurerm'
         command: 'apply'
@@ -106,8 +104,6 @@ stages:
     # ToDo: Verify the working directory
     - task: CmdLine@2
       displayName: Run Regression Tests
-      env:
-        SYSTEM_DEBUG: 'true'
       continueOnError: true
       inputs:
         # script: 'newman run TestSuite.Data-Validation.json -e Test.environment.json --reporters cli,junit --reporter-junit-export TEST-DataValidation.xml'
@@ -117,8 +113,6 @@ stages:
     # ToDo: Verify the working directory
     - task: CmdLine@2
       displayName: Run Data Validation Tests
-      env:
-        SYSTEM_DEBUG: 'true'
       continueOnError: true
       inputs:
         # script: 'newman run TestSuite.Regression.json -e Test.environment.json --reporters cli,junit --reporter-junit-export TEST-Regression.xml'
@@ -221,8 +215,6 @@ stages:
           #- task: AzureWebApp@1
           - task: AzureRMWebAppDeployment@4
             displayName: 'Deploy Azure Web App'
-            env:
-              SYSTEM_DEBUG: 'true'
             inputs:
               ConnectionType: "AzureRM"
               azureSubscription: 'FixedConnection'
@@ -237,8 +229,6 @@ stages:
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
           - task: CmdLine@2
-            env:
-              SYSTEM_DEBUG: 'true'
             inputs:
               script: |
                 #wget "https://apache.mirrors.lucidnetworks.net//jmeter/binaries/apache-jmeter-5.2.1.tgz"
@@ -285,7 +275,6 @@ stages:
     environment:
       name: 'Alices_New_Environment'       # ToDo: Change/provide a name
       resourceType: VirtualMachine
-      SYSTEM_DEBUG: 'true'
       #tags: selenium
     strategy:
       runOnce:
@@ -335,8 +324,6 @@ stages:
                                 with open('$temp_filename', 'w', encoding='utf-8') as f:
                                   f.write(content)"
           - task: Bash@3
-            env:
-              SYSTEM_DEBUG: 'true'
             inputs:
               targetType: 'inline'
               script: |
