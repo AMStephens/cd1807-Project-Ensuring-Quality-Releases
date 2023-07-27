@@ -275,6 +275,16 @@ stages:
               PathtoPublish: '$(Pipeline.Workspace)/drop-perftests/endurance_report'
               ArtifactName: 'EnduranceTestReport'
               publishLocation: 'Container'
+
+          - task: PublishHTML@1
+            inputs:
+              htmlReportFolder: '$(Pipeline.Workspace)/drop-perftests/stress_report'
+              displayName: 'Publish Stress Test Report'
+
+          - task: PublishHTML@1
+            inputs:
+              htmlReportFolder: '$(Pipeline.Workspace)/drop-perftests/endurance_report'
+              displayName: 'Publish Endurance Test Report'          
               
   #--------------------------------------------# 
   # DEPLOYMENT STAGE
