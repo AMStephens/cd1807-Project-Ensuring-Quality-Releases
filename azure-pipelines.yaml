@@ -262,6 +262,20 @@ stages:
                 cat endurance_results.jtl                
               workingDirectory: $(Pipeline.Workspace)/drop-perftests            # ToDo: Use the artifact name from the task above
               
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Stress Test Report Artifact'
+            inputs:
+              PathtoPublish: '$(Pipeline.Workspace)/drop-perftests/stress_report'
+              ArtifactName: 'StressTestReport'
+              publishLocation: 'Container'
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Endurance Test Report Artifact'
+            inputs:
+              PathtoPublish: '$(Pipeline.Workspace)/drop-perftests/endurance_report'
+              ArtifactName: 'EnduranceTestReport'
+              publishLocation: 'Container'
+              
   #--------------------------------------------# 
   # DEPLOYMENT STAGE
   #--------------------------------------------#    
